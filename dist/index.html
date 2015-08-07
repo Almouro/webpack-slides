@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Webpack</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+  </head>
+  <body cz-shortcut-listen="true">
+    <article>
+      <section data-bespoke-backdrop="emphatic"><img src="images/logo.png">
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2 class="bullet">What the hell is Webpack?</h2><br>
+        <h3 class="bullet">A module bundler</h3><br>
+        <h4 class="bullet">Webpack takes modules with dependencies and generates static assets representing those modules.</h4>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2 class="bullet">What the hell is Webpack?</h2><img src="images/what-is-webpack.png" width="500">
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2 class="bullet">Hmmm... Wait a minute...</h2>
+        <h3 class="bullet">I got a lot of other tools already to do that kind of stuff</h3>
+        <ul>
+          <li>Gulp</li>
+          <li>Grunt</li>
+          <li>Browserify</li>
+          <li>RequireJS</li>
+          <li>SytemJS</li>
+          <li><i>Insert your supposedly <b>awesome</b> library here</i></li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2>Why in the world would I need another one?</h2>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2>Let's try it</h2>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2 class="bullet">Entry -> Output syntax</h2>
+        <pre class="bullet"><code class="language-bash">webpack entry.js bundle.js
+</code></pre>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h3 class="bullet">Use a config file and just run <b>webpack</b></h3>
+        <pre class="bullet"><code class="language-javascript">module.exports =
+  context: paths.src
+  entry:
+    app: ['./index.js']
+  output:
+    path: paths.output
+    filename: 'bundle.js'
+    </code></pre>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2>Loaders transform the <i>modules</i> into static assets</h2><br>
+        <h3 class="bullet">Require file with loader</h3>
+        <pre class="bullet"><code class="language-javascript">require('coffee!yolo.coffee')
+</code></pre>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2 class="bullet">Or add it to the config file</h2>
+        <pre class="bullet"><code class="language-javascript">module.exports =
+  ####
+  module:
+    loaders: [
+      { test: /\.coffee$/, loader: 'coffee' }
+      { test: /\.css$/, loader: 'style!css' }
+    ]
+    </code></pre>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2 class="bullet">Embracing the chaos</h2><br>
+        <h3 class="bullet">Different assets, different languages</h3>
+        <h3 class="bullet">Multiple ways to define modules</h3>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2>CommonJs</h2><br>
+        <pre class="bullet"><code class="language-javascript">require("module");
+require("../file.js");
+exports.doStuff = function() {};
+module.exports = someValue;
+</code></pre>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2>AMD</h2><br>
+        <pre class="bullet"><code class="language-javascript">require(["module", "../file"], function(module, file) { /* ... */ });
+define("mymodule", ["dep1", "dep2"], function(d1, d2) {
+  return someExportedValue;
+});
+</code></pre>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h3 class="bullet">Good news everyone!</h3>
+        <h2 class="bullet">Webpack handles everything!</h2><br>
+        <h3 class="bullet">Motivation:</h3>
+        <div class="bullet">Give the developer the choice of the module style.</div>
+        <div class="bullet">Allow existing code to work.</div>
+        <div class="bullet">Make it easy to add custom module styles.</div>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2>Webpack Devserver</h2><br>
+        <pre class="bullet"><code class="language-bash">$ webpack-dev-server --content-base www/ [--hot]</code></pre><br>
+        <h3 class="bullet">Express Server with socket.io for updates</h3>
+        <h3 class="bullet">Bundle is served from memory without being written!</h3>
+        <h3 class="bullet">-> Great Performance</h3>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2 class="bullet">The Awesomeness of Hot Module Replacement</h2><br>
+        <h3 class="bullet">“Hot Module Replacement” (HMR) is a feature to inject updated modules into the active runtime.</h3>
+        <h3 class="bullet"><i>It’s like LiveReload for every module.</i></h3>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2 class="bullet">Hmm..., what does that mean exactly?</h2><br>
+        <h3><span class="bullet">For instance, </span><span class="bullet">if you update a CSS module, </span>
+          <div class="bullet">Only the CSS will be updated!!</div>
+        </h3>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2>Hot Module Replacement</h2><br>
+        <h3 class="bullet"><span class="bullet">Unfortunately still a Beta feature, </span><span class="bullet">but it's already awesome with:</span></h3>
+        <ul>
+          <li>Stylesheets</li>
+          <li>React (see <a href="https://github.com/gaearon/react-hot-loader">React hot loader</a>)</li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2>Let's try it!</h2>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2 class="bullet">Plugins</h2><br>
+        <h3 class="bullet">Plugins work on the entire bundle and do cool things</h3>
+        <h3 class="bullet">Easy way to modularize the configuration</h3>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2 class="bullet">Many plugins are available</h2><br>
+        <ul>
+          <li>Minification</li>
+          <li>Deduplication</li>
+          <li>...</li>
+          <li>See <a href="http://webpack.github.io/docs/list-of-plugins.html"> the plugins made by Webpack</a></li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2 class="bullet">Include the plugins in your conf</h2><br>
+        <pre class="bullet"><code class="language-javascript">module.exports =
+  ####
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin()
+  ]
+  </code></pre>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2>So many other cool things!</h2><br>
+        <h3>Checkout <a href="http://webpack.github.io/docs/"> the docs</a></h3>
+      </section>
+    </article>
+    <script src="build/build.js"></script>
+  </body>
+</html>
