@@ -18,60 +18,177 @@ html
     article
 
       +slide
-        h1 Webpack
+        img(src="images/logo.png")
 
       +slide
-        h2 Keyboard Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-keys">bespoke-keys</a>
+        h2.bullet What the hell is Webpack?
+        br
+        h3.bullet A module bundler
+        br
+        h4.bullet Webpack takes modules with dependencies and generates static assets representing those modules.
 
       +slide
-        h2 Touch Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-touch">bespoke-touch</a>
+        h2.bullet What the hell is Webpack?
+        img(src="images/what-is-webpack.png", width=500)
 
       +slide
-        h2 Responsive Slides
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-scale">bespoke-scale</a>
+        h2.bullet Hmmm... Wait a minute...
+        h3.bullet I got a lot of other tools already to do that kind of stuff
 
-      +slide
-        h2 Bullet List
-        h3.bullet Powered by <a href="https://github.com/markdalgleish/bespoke-bullets">bespoke-bullets</a>
         ul
-          li Bullet 1
-          li Bullet 2
-          li Bullet 3
+          li Gulp
+          li Grunt
+          li Browserify
+          li RequireJS
+          li SytemJS
+          li <i>Insert your supposedly <b>awesome</b> library here</i>
 
       +slide
-        h2 Syntax Highlighting
-        h3 Powered by <a href="http://twitter.com/LeaVerou">Lea Verou</a>'s <a href="https://github.com/LeaVerou/prism">Prism</a>
-        pre
+        h2 Why in the world would I need another one?
+
+      +slide
+        h2 Let's try it
+
+      +slide
+        h2.bullet Entry -> Output syntax
+        pre.bullet
+          code.language-bash.
+            webpack entry.js bundle.js
+
+      +slide
+        h3.bullet Use a config file and just run <b>webpack</b>
+        pre.bullet
           code.language-javascript.
-            bespoke.from('article', [
-              classes(),
-              keys(),
-              touch(),
-              bullets('li, .bullet')
-            ]);
+            module.exports =
+              context: paths.src
+              entry:
+                app: ['./index.js']
+              output:
+                path: paths.output
+                filename: 'bundle.js'
 
       +slide
-        h2 Named Route
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-hash">bespoke-hash</a>
-        p Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.
+        h2 Loaders transform the <i>modules</i> into static assets
+        br
+        h3.bullet Require file with loader
+        pre.bullet
+          code.language-javascript.
+            require('coffee!yolo.coffee')
 
       +slide
-        h2 Emphatic Slide!
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-backdrop">bespoke-backdrop</a>
+        h2.bullet Or add it to the config file
+        pre.bullet
+          code.language-javascript.
+            module.exports =
+              ####
+              module:
+                loaders: [
+                  { test: /\.coffee$/, loader: 'coffee' }
+                  { test: /\.css$/, loader: 'style!css' }
+                ]
 
       +slide
-        h2.bullet Just the beginning...
+        h2.bullet Embracing the chaos
+        br
+        h3.bullet Different assets, different languages
+        h3.bullet Multiple ways to define modules
+
+      +slide
+        h2 CommonJs
+        br
+        pre.bullet
+          code.language-javascript.
+            require("module");
+            require("../file.js");
+            exports.doStuff = function() {};
+            module.exports = someValue;
+
+      +slide
+        h2 AMD
+        br
+        pre.bullet
+          code.language-javascript.
+            require(["module", "../file"], function(module, file) { /* ... */ });
+            define("mymodule", ["dep1", "dep2"], function(d1, d2) {
+              return someExportedValue;
+            });
+
+      +slide
+        h3.bullet Good news everyone!
+        h2.bullet Webpack handles everything!
+        br
+        h3.bullet Motivation:
+        .bullet Give the developer the choice of the module style.
+        .bullet Allow existing code to work.
+        .bullet Make it easy to add custom module styles.
+
+      +slide
+        h2 Webpack Devserver
+        br
+        pre.bullet
+          code.language-bash.
+            $ webpack-dev-server --content-base www/ [--hot]
+        br
+        h3.bullet Express Server with socket.io for updates
+        h3.bullet Bundle is served from memory without being written!
+        h3.bullet -> Great Performance
+
+      +slide
+        h2.bullet The Awesomeness of Hot Module Replacement
+        br
+        h3.bullet “Hot Module Replacement” (HMR) is a feature to inject updated modules into the active runtime.
+        h3.bullet <i>It’s like LiveReload for every module.</i>
+
+      +slide
+        h2.bullet Hmm..., what does that mean exactly?
+        br
+        h3
+          span.bullet For instance, 
+          span.bullet if you update a CSS module, 
+          .bullet Only the CSS will be updated!!
+
+      +slide
+        h2 Hot Module Replacement
+        br
+        h3.bullet
+          span.bullet Unfortunately still a Beta feature, 
+          span.bullet but it's already awesome with:
+        ul
+          li Stylesheets
+          li React (see <a href="https://github.com/gaearon/react-hot-loader">React hot loader</a>)
+
+      +slide
+        h2 Let's try it!
+
+      +slide
+        h2.bullet Plugins
+        br
+        h3.bullet Plugins work on the entire bundle and do cool things
+        h3.bullet Easy way to modularize the configuration
+
+      +slide
+        h2.bullet Many plugins are available
         br
         ul
-          li Edit <a href="http://jade-lang.com/">Jade</a> markup in <em>'src/index.jade'</em>
-          li Edit <a href="http://learnboost.github.io/stylus/">Stylus</a> styles in <em>'src/styles/main.styl'</em>
-          li Edit JavaScript in <em>'src/scripts/main.js'</em>
+          li Minification
+          li Deduplication
+          li ...
+          li See <a href="http://webpack.github.io/docs/list-of-plugins.html"> the plugins made by Webpack</a>
+
+      +slide
+        h2.bullet Include the plugins in your conf
         br
-        ul
-          li
-            strong Enjoy! :)
-            a(href='http://twitter.com/markdalgleish')  -@markdalgleish
+        pre.bullet
+          code.language-javascript.
+            module.exports =
+              ####
+              plugins: [
+                new webpack.optimize.UglifyJsPlugin()
+              ]
+
+      +slide
+        h2 So many other cool things!
+        br
+        h3 Checkout <a href="http://webpack.github.io/docs/"> the docs</a>
 
     script(src='build/build.js')
