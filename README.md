@@ -1,4 +1,8 @@
-# Webpack
+# Webpack - Theodo August 7th 2015
+
+Presentation given at [Theodo](http://www.theodo.fr) on [Webpack](http://webpack.github.io), on the Theodo August 7th 2015.
+You can [view slides online](http://almouro.github.io/webpack-slides/dist/) or view slides locally (see below).
+
 > A [Bespoke.js](http://markdalgleish.com/projects/bespoke.js) presentation, built with [generator-bespoke](https://github.com/markdalgleish/generator-bespoke)
 
 ## View slides locally
